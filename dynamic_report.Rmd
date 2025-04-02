@@ -7,6 +7,8 @@ output: html_fragment
 knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
 library(tidyverse)
 ```
+# Audience Engagement In Presentations 
+### Author: Emmanuel Araba
 
 ```{r}
 logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQYs1l6xNEDjdI9nKIN2BXwnAXJZczjyY6HdpGOq8zuS4WZo4B7y02KIlgFjYsiFnIAf2zAZIk0SV1g/pub?gid=2099547021&single=true&output=csv")
@@ -20,7 +22,9 @@ latest_data <- logged_data %>%
   )
 ```
 
-The following chart shows the distributions of room 'fullness' that I observed across all the presentations I went to. To collect this data, I would take note of how full the room was relative to the amount of seats in the lecture theatre. For instance, some of the workshops I attended over the week were quite full, and extra chairs had to be brought in to seat all the attendees.
+### Room Capacity Visualisation 
+
+The following chart shows the distributions of room 'fullness' that I observed across all the presentations I went to. To collect this data, I would take note of how full the room was relative to the amount of seats in the lecture theatre. For instance, some of the workshops I attended over the week were quite full, and extra chairs had to be brought in to seat all the attendees. From the plot, we can see that we had a varied range of room 'fullness', reflective of the types of presentations I attended, along with other factors like the time of day.
 ```{r}
 # Room capacity visualisation
 room_capacity_plot <- latest_data %>%
@@ -35,7 +39,9 @@ room_capacity_plot <- latest_data %>%
 room_capacity_plot
 ```
 
-Next, we can visualise how the 'fullness' of presentations affects how well received the presentation was, and ultimately if the audience liked it enough to clap.
+### Room 'Fullness' vs Clapping 
+
+Next, we can visualise how the 'fullness' of presentations affects how well received the presentation was, and ultimately if the audience liked it enough to clap. Unsprisingly, presentations with low attendance seems to be relatively uninterested in the presentation, and didnt clap on any occasion. Suprisingly, as presentation attendance grew, the audience became less likely to clap at the end of a presentation.
 ```{r}
 # Visualising clapping vs. room capacity
 capacity_vs_clapping_plot <- latest_data %>%
@@ -54,7 +60,10 @@ capacity_vs_clapping_plot <- latest_data %>%
        fill = "Audience Clapped")
 capacity_vs_clapping_plot
 ```
-Likewise, if I observed more engagement in lectures, by grouping the various categories of engagement into one category, called 'some engagement' and having  another category called 'no engagement'. Then, we could find out if the audiences that had some engagement with the presentation were more likely to clap for their presenter.
+
+### Engagement vs Clapping 
+
+Likewise, if I observed more engagement in lectures, by grouping the various categories of engagement into one category, called 'some engagement' and having  another category called 'no engagement'. Then, we could find out if the audiences that had some engagement with the presentation were more likely to clap for their presenter. Unsurprisingly, the audiences that were engaged with the presentation applauded the presenter at the end of the presentation at a much higher rate than those that didnt.
 ```{r}
 # Looking at the relationship between engagement and clapping
 # First create a simplified engagement variable (Did engage or didn't engage)
@@ -82,6 +91,9 @@ engagement_vs_clapping_plot <- latest_data_with_engagement_type %>%
        fill = "Audience Clapped")
 engagement_vs_clapping_plot
 ```
+
+### Summary Statistics 
+
 And we can also find out some relevant statistics about how many questions presenters asked in their presentations.
 ```{r}
 # Mean and median number of presenter questions
@@ -96,7 +108,10 @@ And we can also find out some relevant statistics about how many questions prese
  print(paste("The maximum of amount of questions asked by presenters was:", max_questions))
 
 ```
-The following graph tracks the method of engagement I observed in the audience in each presentation. To collect this data, I took a look around the room at a random point during the presentation, and observed how most people in the room were engaging with the presentation. The sum of these options is greater than the total number of observations I made because some students would engage in multiple ways (i.e taking notes and nodding along)
+
+### Types of Engagement 
+
+The following graph tracks the method of engagement I observed in the audience in each presentation. To collect this data, I took a look around the room at a random point during the presentation, and observed how most people in the room were engaging with the presentation. The sum of these options is greater than the total number of observations I made because some students would engage in multiple ways (i.e taking notes and nodding along).
 ```{r}
 # Audience engagement methods
 audience_engagement_plot <- latest_data %>%
@@ -114,7 +129,9 @@ audience_engagement_plot <- latest_data %>%
        y = "Frequency")
 audience_engagement_plot
 ```
-```{css}
+
+
+```{css, echo=FALSE}
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
 
 
